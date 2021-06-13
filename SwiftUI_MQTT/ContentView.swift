@@ -8,9 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    // TODO: Remove singleton
+    @StateObject var mqttManager = MQTTManager.shared()
     var body: some View {
-        Text("Hello, world!")
-            .padding()
+        NavigationView {
+            Text("Hello, world!")
+                .padding()
+                .navigationTitle("Messages")
+                .navigationBarItems(trailing: NavigationLink(
+                    destination: SettingsView(),
+                    label: {
+                        Image(systemName: "gear")
+                    }))
+        }
+        .environmentObject(mqttManager)
     }
 }
 

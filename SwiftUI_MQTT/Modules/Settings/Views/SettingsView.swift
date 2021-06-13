@@ -9,20 +9,35 @@ import SwiftUI
 
 struct SettingsView: View {
     @State var brokerAddress: String = ""
+    @EnvironmentObject private var mqttManager: MQTTManager
     var body: some View {
         VStack {
             TextField("Enter broker Address", text: $brokerAddress)
-                .padding(EdgeInsets(top: 7.0, leading: 15.0, bottom: 7.0, trailing: 7.0))
+                .padding()
             HStack(spacing: 50) {
-                Button(action: {}) {
+                Button(action: { configureAndConnect() }) {
                     Text("Connect")
                 }.buttonStyle(BaseButtonStyle(foreground: .white, background: .blue))
-                Button(action: {}) {
+                Button(action: { disconnect() }) {
                     Text("Disconnect")
                 }.buttonStyle(BaseButtonStyle(foreground: .white, background: .red))
             }
             .padding()
+            Text(mqttManager.currentAppState.appConnectionState.description)
+            Spacer()
         }
+        .padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
+    }
+
+    private func configureAndConnect() {
+        // Initialize the MQTT Manager
+        mqttManager.initializeMQTT(host: brokerAddress, identifier: UUID().uuidString)
+        // Connect
+        mqttManager.connect()
+    }
+
+    private func disconnect() {
+        mqttManager.disconnect()
     }
 }
 

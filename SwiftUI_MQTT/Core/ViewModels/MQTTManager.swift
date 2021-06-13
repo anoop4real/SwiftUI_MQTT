@@ -8,6 +8,7 @@
 import Foundation
 
 import CocoaMQTT
+import Combine
 
 class MQTTManager: ObservableObject {
     private var mqttClient: CocoaMQTT?
@@ -18,8 +19,14 @@ class MQTTManager: ObservableObject {
     private var password: String!
 
     @Published var currentAppState = MQTTAppState()
+    private var anyCancellable: AnyCancellable?
     // Private Init
-    private init() {}
+    private init() {
+        // Workaround to support nested Observables, without this code changes to state is not propagated
+        anyCancellable = currentAppState.objectWillChange.sink { [weak self] _ in
+            self?.objectWillChange.send()
+        }
+    }
 
     // MARK: Shared Instance
 
@@ -32,6 +39,10 @@ class MQTTManager: ObservableObject {
     }
 
     func initializeMQTT(host: String, identifier: String, username: String? = nil, password: String? = nil) {
+        // If any previous instance exists then clean it
+        if mqttClient != nil {
+            mqttClient = nil
+        }
         self.identifier = identifier
         self.host = host
         self.username = username
@@ -49,9 +60,14 @@ class MQTTManager: ObservableObject {
         mqttClient?.delegate = self
     }
 
+    // TODO: Implement Error
     func connect() {
-        currentAppState.setAppConnectionState(state: .connecting)
-        mqttClient?.connect()
+        // TODO: Handle fail
+        if let success = mqttClient?.connect(), success {
+            currentAppState.setAppConnectionState(state: .connecting)
+        } else {
+            currentAppState.setAppConnectionState(state: .disconnected)
+        }
     }
 
     func subscribe(topic: String) {
