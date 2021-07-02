@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		0001831ED0CB3D24571EADBE /* Pods_SwiftUI_MQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7715F63375E11AD7A7F440 /* Pods_SwiftUI_MQTTTests.framework */; };
+		76B88D5A268B571D0098185D /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B88D59268B571D0098185D /* BaseButtonStyle.swift */; };
+		76B88D5C268B7DCC0098185D /* ConnectionStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B88D5B268B7DCC0098185D /* ConnectionStatusBar.swift */; };
 		76E2F52C25B71BDD00237134 /* SwiftUI_MQTTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2F52B25B71BDD00237134 /* SwiftUI_MQTTApp.swift */; };
 		76E2F52E25B71BDD00237134 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2F52D25B71BDD00237134 /* ContentView.swift */; };
 		76E2F53025B71BDE00237134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E2F52F25B71BDE00237134 /* Assets.xcassets */; };
@@ -43,6 +45,8 @@
 		33133D7391B1AEFC654E8C43 /* Pods-SwiftUI_MQTT-SwiftUI_MQTTUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUI_MQTT-SwiftUI_MQTTUITests.release.xcconfig"; path = "Target Support Files/Pods-SwiftUI_MQTT-SwiftUI_MQTTUITests/Pods-SwiftUI_MQTT-SwiftUI_MQTTUITests.release.xcconfig"; sourceTree = "<group>"; };
 		4CF36D549E1F4E4CA245FBCF /* Pods-SwiftUI_MQTTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftUI_MQTTTests.debug.xcconfig"; path = "Target Support Files/Pods-SwiftUI_MQTTTests/Pods-SwiftUI_MQTTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		748801DE720880F0B38F3D7A /* Pods_SwiftUI_MQTT_SwiftUI_MQTTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftUI_MQTT_SwiftUI_MQTTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		76B88D59268B571D0098185D /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
+		76B88D5B268B7DCC0098185D /* ConnectionStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusBar.swift; sourceTree = "<group>"; };
 		76E2F52825B71BDD00237134 /* SwiftUI_MQTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_MQTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E2F52B25B71BDD00237134 /* SwiftUI_MQTTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_MQTTApp.swift; sourceTree = "<group>"; };
 		76E2F52D25B71BDD00237134 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -93,6 +97,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		76B88D57268B56FA0098185D /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				76B88D58268B57010098185D /* Button */,
+			);
+			path = Styles;
+			sourceTree = "<group>";
+		};
+		76B88D58268B57010098185D /* Button */ = {
+			isa = PBXGroup;
+			children = (
+				76B88D59268B571D0098185D /* BaseButtonStyle.swift */,
+			);
+			path = Button;
+			sourceTree = "<group>";
+		};
 		76E2F51F25B71BDD00237134 = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +178,7 @@
 		76E2F55925B71D2300237134 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				76B88D57268B56FA0098185D /* Styles */,
 				76E9C20E25B87A6100ABC54D /* Views */,
 				76E2F55B25B71D3D00237134 /* ViewModels */,
 				76E2F55A25B71D3600237134 /* Models */,
@@ -208,6 +229,7 @@
 		76E9C20E25B87A6100ABC54D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				76B88D5B268B7DCC0098185D /* ConnectionStatusBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -499,7 +521,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E9C21125B87B5000ABC54D /* SettingsView.swift in Sources */,
+				76B88D5C268B7DCC0098185D /* ConnectionStatusBar.swift in Sources */,
 				76E2F52E25B71BDD00237134 /* ContentView.swift in Sources */,
+				76B88D5A268B571D0098185D /* BaseButtonStyle.swift in Sources */,
 				76E2F56525B72C4B00237134 /* MQTTAppState.swift in Sources */,
 				76E2F55D25B71DCD00237134 /* MQTTManager.swift in Sources */,
 				76E2F52C25B71BDD00237134 /* SwiftUI_MQTTApp.swift in Sources */,

@@ -29,6 +29,14 @@ enum MQTTAppConnectionState {
             return "Connected"
         }
     }
+    var isConnected: Bool {
+        switch self {
+        case .connected, .connectedSubscribed, .connectedUnSubscribed:
+            return true
+        case .disconnected,.connecting:
+            return false
+        }
+    }
 }
 
 class MQTTAppState: ObservableObject {

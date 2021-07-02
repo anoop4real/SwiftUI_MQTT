@@ -12,11 +12,13 @@ struct ContentView: View {
     @StateObject var mqttManager = MQTTManager.shared()
     var body: some View {
         NavigationView {
-            Text("Hello, world!")
-                .padding()
+            VStack {
+                ConnectionStatusBar(message: mqttManager.currentAppState.appConnectionState.description, isConnected: mqttManager.currentAppState.appConnectionState.isConnected)
+                Spacer()
+            }
                 .navigationTitle("Messages")
                 .navigationBarItems(trailing: NavigationLink(
-                    destination: SettingsView(),
+                                        destination: SettingsView(brokerAddress: mqttManager.currentHost() ?? ""),
                     label: {
                         Image(systemName: "gear")
                     }))

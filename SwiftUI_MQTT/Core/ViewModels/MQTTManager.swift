@@ -92,6 +92,10 @@ class MQTTManager: ObservableObject {
     func unSubscribeFromCurrentTopic() {
         mqttClient?.unsubscribe(topic)
     }
+    
+    func currentHost() -> String? {
+        return host
+    }
 }
 
 extension MQTTManager: CocoaMQTTDelegate {
