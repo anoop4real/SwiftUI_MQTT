@@ -101,6 +101,7 @@ class MQTTManager: ObservableObject {
 extension MQTTManager: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topics: [String]) {
         TRACE("topic: \(topics)")
+        currentAppState.setAppConnectionState(state: .connectedSubscribed)
     }
 
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
@@ -122,11 +123,6 @@ extension MQTTManager: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16) {
         TRACE("message: \(message.string.description), id: \(id)")
         currentAppState.setReceivedMessage(text: message.string.description)
-    }
-
-    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
-        TRACE("topic: \(topic)")
-        currentAppState.setAppConnectionState(state: .connectedSubscribed)
     }
 
     func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
