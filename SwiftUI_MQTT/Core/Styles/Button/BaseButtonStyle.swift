@@ -26,6 +26,7 @@ struct BaseButtonStyle: ButtonStyle {
                 .frame(maxWidth: .infinity)
                 .foregroundColor(isEnabled ? foreground : Color(white: 1, opacity: 179 / 255.0))
                 .background(isEnabled ? background : background.opacity(0.5))
+                .clipShape(Capsule())
                 .opacity(configuration.isPressed ? 0.8 : 1.0)
         }
     }

@@ -26,7 +26,7 @@ enum MQTTAppConnectionState {
         case .connectedSubscribed:
             return "Subscribed"
         case .connectedUnSubscribed:
-            return "Connected"
+            return "Connected Unsubscribed"
         }
     }
     var isConnected: Bool {
@@ -50,8 +50,8 @@ enum MQTTAppConnectionState {
 
 class MQTTAppState: ObservableObject {
     @Published var appConnectionState: MQTTAppConnectionState = .disconnected
-    @Published var receivedMessage: String = ""
-    private var historyText: String = ""
+    @Published var historyText: String = ""
+    private var receivedMessage: String = ""
 
     func setReceivedMessage(text: String) {
         receivedMessage = text

@@ -51,6 +51,7 @@ class MQTTManager: ObservableObject {
 
         // TODO: Guard
         mqttClient = CocoaMQTT(clientID: clientID, host: host, port: 1883)
+        // If a server has username and password, pass it here
         if let finalusername = self.username, let finalpassword = self.password {
             mqttClient?.username = finalusername
             mqttClient?.password = finalpassword
@@ -96,6 +97,18 @@ class MQTTManager: ObservableObject {
     func currentHost() -> String? {
         return host
     }
+    
+    func isSubscribed() -> Bool {
+       return currentAppState.appConnectionState.isSubscribed
+    }
+    
+    func isConnected() -> Bool {
+        return currentAppState.appConnectionState.isConnected
+    }
+    
+    func connectionStateMessage() -> String {
+        return currentAppState.appConnectionState.description
+    }
 }
 
 extension MQTTManager: CocoaMQTTDelegate {
@@ -128,6 +141,7 @@ extension MQTTManager: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
         TRACE("topic: \(topic)")
         currentAppState.setAppConnectionState(state: .connectedUnSubscribed)
+        currentAppState.clearData()
     }
 
     func mqttDidPing(_ mqtt: CocoaMQTT) {

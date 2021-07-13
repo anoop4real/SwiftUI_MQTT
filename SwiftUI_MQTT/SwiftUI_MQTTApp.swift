@@ -11,7 +11,7 @@ import SwiftUI
 struct SwiftUI_MQTTApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MessagesView()
         }
     }
 }

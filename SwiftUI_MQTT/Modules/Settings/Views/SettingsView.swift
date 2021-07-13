@@ -12,13 +12,9 @@ struct SettingsView: View {
     @EnvironmentObject private var mqttManager: MQTTManager
     var body: some View {
         VStack {
-            ConnectionStatusBar(message: mqttManager.currentAppState.appConnectionState.description, isConnected: mqttManager.currentAppState.appConnectionState.isConnected)
-            TextField("Enter broker Address", text: $brokerAddress)
-                .textFieldStyle(RoundedBorderTextFieldStyle())
-                .disableAutocorrection(true)
-                .padding()
-                .disabled(mqttManager.currentAppState.appConnectionState != .disconnected)
-                .opacity(mqttManager.currentAppState.appConnectionState != .disconnected ? 0.5 : 1.0)
+            ConnectionStatusBar(message: mqttManager.connectionStateMessage(), isConnected: mqttManager.isConnected())
+            MQTTTextField(placeHolderMessage: "Enter broker Address", isDisabled: mqttManager.currentAppState.appConnectionState != .disconnected, message: $brokerAddress)
+                .padding(EdgeInsets(top: 0.0, leading: 7.0, bottom: 0.0, trailing: 7.0))
             HStack(spacing: 50) {
                 setUpConnectButton()
                 setUpDisconnectButton()
@@ -26,7 +22,6 @@ struct SettingsView: View {
             .padding()
             Spacer()
         }
-        .padding(EdgeInsets(top: 10.0, leading: 0.0, bottom: 0.0, trailing: 0.0))
         .navigationTitle("Settings")
         .navigationBarTitleDisplayMode(.inline)
     }

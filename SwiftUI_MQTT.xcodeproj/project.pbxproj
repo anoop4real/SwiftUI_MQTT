@@ -10,8 +10,10 @@
 		0001831ED0CB3D24571EADBE /* Pods_SwiftUI_MQTTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FA7715F63375E11AD7A7F440 /* Pods_SwiftUI_MQTTTests.framework */; };
 		76B88D5A268B571D0098185D /* BaseButtonStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B88D59268B571D0098185D /* BaseButtonStyle.swift */; };
 		76B88D5C268B7DCC0098185D /* ConnectionStatusBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76B88D5B268B7DCC0098185D /* ConnectionStatusBar.swift */; };
+		76C85F98269A0852007BDB95 /* TextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C85F97269A0852007BDB95 /* TextView.swift */; };
+		76C85F9A269CB5C4007BDB95 /* MQTTTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76C85F99269CB5C4007BDB95 /* MQTTTextField.swift */; };
 		76E2F52C25B71BDD00237134 /* SwiftUI_MQTTApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2F52B25B71BDD00237134 /* SwiftUI_MQTTApp.swift */; };
-		76E2F52E25B71BDD00237134 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2F52D25B71BDD00237134 /* ContentView.swift */; };
+		76E2F52E25B71BDD00237134 /* MessagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2F52D25B71BDD00237134 /* MessagesView.swift */; };
 		76E2F53025B71BDE00237134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E2F52F25B71BDE00237134 /* Assets.xcassets */; };
 		76E2F53325B71BDE00237134 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 76E2F53225B71BDE00237134 /* Preview Assets.xcassets */; };
 		76E2F53E25B71BDE00237134 /* SwiftUI_MQTTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E2F53D25B71BDE00237134 /* SwiftUI_MQTTTests.swift */; };
@@ -47,9 +49,11 @@
 		748801DE720880F0B38F3D7A /* Pods_SwiftUI_MQTT_SwiftUI_MQTTUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftUI_MQTT_SwiftUI_MQTTUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76B88D59268B571D0098185D /* BaseButtonStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseButtonStyle.swift; sourceTree = "<group>"; };
 		76B88D5B268B7DCC0098185D /* ConnectionStatusBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionStatusBar.swift; sourceTree = "<group>"; };
+		76C85F97269A0852007BDB95 /* TextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextView.swift; sourceTree = "<group>"; };
+		76C85F99269CB5C4007BDB95 /* MQTTTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MQTTTextField.swift; sourceTree = "<group>"; };
 		76E2F52825B71BDD00237134 /* SwiftUI_MQTT.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SwiftUI_MQTT.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		76E2F52B25B71BDD00237134 /* SwiftUI_MQTTApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftUI_MQTTApp.swift; sourceTree = "<group>"; };
-		76E2F52D25B71BDD00237134 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		76E2F52D25B71BDD00237134 /* MessagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesView.swift; sourceTree = "<group>"; };
 		76E2F52F25B71BDE00237134 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		76E2F53225B71BDE00237134 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		76E2F53425B71BDE00237134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -141,7 +145,6 @@
 				76E9C20B25B87A2900ABC54D /* Modules */,
 				76E2F55925B71D2300237134 /* Core */,
 				76E2F52B25B71BDD00237134 /* SwiftUI_MQTTApp.swift */,
-				76E2F52D25B71BDD00237134 /* ContentView.swift */,
 				76E2F52F25B71BDE00237134 /* Assets.xcassets */,
 				76E2F53425B71BDE00237134 /* Info.plist */,
 				76E2F53125B71BDE00237134 /* Preview Content */,
@@ -222,6 +225,7 @@
 		76E9C20D25B87A4200ABC54D /* Message */ = {
 			isa = PBXGroup;
 			children = (
+				76E2F52D25B71BDD00237134 /* MessagesView.swift */,
 			);
 			path = Message;
 			sourceTree = "<group>";
@@ -230,6 +234,8 @@
 			isa = PBXGroup;
 			children = (
 				76B88D5B268B7DCC0098185D /* ConnectionStatusBar.swift */,
+				76C85F97269A0852007BDB95 /* TextView.swift */,
+				76C85F99269CB5C4007BDB95 /* MQTTTextField.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -521,11 +527,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				76E9C21125B87B5000ABC54D /* SettingsView.swift in Sources */,
+				76C85F98269A0852007BDB95 /* TextView.swift in Sources */,
 				76B88D5C268B7DCC0098185D /* ConnectionStatusBar.swift in Sources */,
-				76E2F52E25B71BDD00237134 /* ContentView.swift in Sources */,
+				76E2F52E25B71BDD00237134 /* MessagesView.swift in Sources */,
 				76B88D5A268B571D0098185D /* BaseButtonStyle.swift in Sources */,
 				76E2F56525B72C4B00237134 /* MQTTAppState.swift in Sources */,
 				76E2F55D25B71DCD00237134 /* MQTTManager.swift in Sources */,
+				76C85F9A269CB5C4007BDB95 /* MQTTTextField.swift in Sources */,
 				76E2F52C25B71BDD00237134 /* SwiftUI_MQTTApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
