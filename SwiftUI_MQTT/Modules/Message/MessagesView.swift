@@ -31,26 +31,29 @@ struct MessageView: View {
     var body: some View {
         VStack {
             ConnectionStatusBar(message: mqttManager.connectionStateMessage(), isConnected: mqttManager.isConnected())
-            HStack {
-                MQTTTextField(placeHolderMessage: "Enter a topic to subscribe", isDisabled: !mqttManager.isConnected() || mqttManager.isSubscribed(), message: $topic)
-                Button(action: functionFor(state: mqttManager.currentAppState.appConnectionState)) {
-                    Text(titleForSubscribButtonFrom(state: mqttManager.currentAppState.appConnectionState))
-                        .font(.system(size: 14.0))
-                }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
-                    .frame(width: 100)
-                    .disabled(!mqttManager.isConnected() || topic.isEmpty)
+            VStack {
+                HStack {
+                    MQTTTextField(placeHolderMessage: "Enter a topic to subscribe", isDisabled: !mqttManager.isConnected() || mqttManager.isSubscribed(), message: $topic)
+                    Button(action: functionFor(state: mqttManager.currentAppState.appConnectionState)) {
+                        Text(titleForSubscribButtonFrom(state: mqttManager.currentAppState.appConnectionState))
+                            .font(.system(size: 14.0))
+                    }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
+                        .frame(width: 100)
+                        .disabled(!mqttManager.isConnected() || topic.isEmpty)
+                }
+
+                HStack {
+                    MQTTTextField(placeHolderMessage: "Enter a message", isDisabled: !mqttManager.isSubscribed(), message: $message)
+                    Button(action: { send(message: message) }) {
+                        Text("Send").font(.body)
+                    }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
+                        .frame(width: 80)
+                        .disabled(!mqttManager.isSubscribed() || message.isEmpty)
+                }
+                MessageHistoryTextView(text: $mqttManager.currentAppState.historyText
+                ).frame(height: 150)
             }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
-            
-            HStack {
-                MQTTTextField(placeHolderMessage: "Enter a message", isDisabled: !mqttManager.isSubscribed(), message: $message)
-                Button(action: { send(message: message) }) {
-                    Text("Send").font(.body)
-                }.buttonStyle(BaseButtonStyle(foreground: .white, background: .green))
-                    .frame(width: 80)
-                    .disabled(!mqttManager.isSubscribed() || message.isEmpty)
-            }.padding(EdgeInsets(top: 0, leading: 7, bottom: 0, trailing: 7))
-            MessageHistoryTextView(text: $mqttManager.currentAppState.historyText
-            )
+
             Spacer()
         }
         .navigationTitle("Messages")
@@ -60,20 +63,21 @@ struct MessageView: View {
                 Image(systemName: "gear")
             }))
     }
-    
+
     private func subscribeUnsubscibe(topic: String) {
         mqttManager.subscribe(topic: topic)
     }
-    
+
     private func usubscribe() {
         mqttManager.unSubscribeFromCurrentTopic()
     }
-    
+
     private func send(message: String) {
-        mqttManager.publish(with: message)
+        let finalMessage = "SwiftUIIOS says: \(message)"
+        mqttManager.publish(with: finalMessage)
         self.message = ""
     }
-    
+
     private func titleForSubscribButtonFrom(state: MQTTAppConnectionState) -> String {
         switch state {
         case .connected, .connectedUnSubscribed, .disconnected, .connecting:
@@ -82,7 +86,7 @@ struct MessageView: View {
             return "Unsubscribe"
         }
     }
-    
+
     private func functionFor(state: MQTTAppConnectionState) -> () -> Void {
         switch state {
         case .connected, .connectedUnSubscribed, .disconnected, .connecting:

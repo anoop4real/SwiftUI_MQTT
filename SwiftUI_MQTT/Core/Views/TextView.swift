@@ -16,6 +16,7 @@ struct MessageHistoryTextView: UIViewRepresentable {
         textView.autocapitalizationType = .sentences
         textView.isSelectable = true
         textView.isUserInteractionEnabled = false
+        textView.font = UIFont.systemFont(ofSize: 14.0)
         
         return textView
     }
