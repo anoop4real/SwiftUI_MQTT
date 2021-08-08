@@ -48,7 +48,7 @@ enum MQTTAppConnectionState {
     }
 }
 
-class MQTTAppState: ObservableObject {
+final class MQTTAppState: ObservableObject {
     @Published var appConnectionState: MQTTAppConnectionState = .disconnected
     @Published var historyText: String = ""
     private var receivedMessage: String = ""

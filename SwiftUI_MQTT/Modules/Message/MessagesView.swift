@@ -64,7 +64,7 @@ struct MessageView: View {
             }))
     }
 
-    private func subscribeUnsubscibe(topic: String) {
+    private func subscribe(topic: String) {
         mqttManager.subscribe(topic: topic)
     }
 
@@ -90,7 +90,7 @@ struct MessageView: View {
     private func functionFor(state: MQTTAppConnectionState) -> () -> Void {
         switch state {
         case .connected, .connectedUnSubscribed, .disconnected, .connecting:
-            return { subscribeUnsubscibe(topic: topic) }
+            return { subscribe(topic: topic) }
         case .connectedSubscribed:
             return { usubscribe() }
         }

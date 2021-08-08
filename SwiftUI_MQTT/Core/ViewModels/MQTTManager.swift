@@ -10,7 +10,7 @@ import Foundation
 import CocoaMQTT
 import Combine
 
-class MQTTManager: ObservableObject {
+final class MQTTManager: ObservableObject {
     private var mqttClient: CocoaMQTT?
     private var identifier: String!
     private var host: String!
@@ -61,9 +61,7 @@ class MQTTManager: ObservableObject {
         mqttClient?.delegate = self
     }
 
-    // TODO: Implement Error
     func connect() {
-        // TODO: Handle fail
         if let success = mqttClient?.connect(), success {
             currentAppState.setAppConnectionState(state: .connecting)
         } else {
@@ -177,10 +175,10 @@ extension MQTTManager {
 }
 
 extension Optional {
-    // Unwarp optional value for printing log only
+    // Unwrap optional value for printing log only
     var description: String {
-        if let warped = self {
-            return "\(warped)"
+        if let wraped = self {
+            return "\(wraped)"
         }
         return ""
     }
