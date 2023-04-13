@@ -56,7 +56,7 @@ final class MQTTManager: ObservableObject {
             mqttClient?.username = finalusername
             mqttClient?.password = finalpassword
         }
-        mqttClient?.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
+        mqttClient?.willMessage = CocoaMQTTMessage(topic: "/will", string: "dieout")
         mqttClient?.keepAlive = 60
         mqttClient?.delegate = self
     }
@@ -110,9 +110,15 @@ final class MQTTManager: ObservableObject {
 }
 
 extension MQTTManager: CocoaMQTTDelegate {
-    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topics: [String]) {
-        TRACE("topic: \(topics)")
+    func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopics success: NSDictionary, failed: [String]) {
+        TRACE("topic: \(success)")
         currentAppState.setAppConnectionState(state: .connectedSubscribed)
+    }
+    
+    func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopics topics: [String]) {
+        TRACE("topic: \(topics)")
+        currentAppState.setAppConnectionState(state: .connectedUnSubscribed)
+        currentAppState.clearData()
     }
 
     func mqtt(_ mqtt: CocoaMQTT, didConnectAck ack: CocoaMQTTConnAck) {
